@@ -54,3 +54,16 @@ function custom_post_register() {
 
 add_action( 'init', 'custom_post_register' );
 
+
+
+function custom_post_recipe_template( $file ) {
+	global $post;
+	if ( 'recipe' == $post->post_type ) {
+		$file = plugin_dir_path( __FILE__ ) . '/cpt-template/single-recipe.php';
+	}
+
+	return $file;
+}
+
+add_filter( 'single_template', 'custom_post_recipe_template' );
+
